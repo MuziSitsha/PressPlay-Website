@@ -1040,28 +1040,124 @@ input, select, textarea { font-family: var(--font); }
   .splash__right { display: none; }
 
   .form-row { grid-template-columns: 1fr; }
+
+  /* Reduce section padding on tablet */
+  .hero .container { padding-top: 52px; }
+  .products, .why, .industries, .mission,
+  .testimonials, .quote-section, .contact { padding: 64px 0; }
+  .process { padding: 64px 0; }
+  .cta-band { padding: 52px 0; }
 }
 
 /* ════════════════════════════════════════
    RESPONSIVE — MOBILE (≤600px)
 ════════════════════════════════════════ */
 @media (max-width: 600px) {
-  .section-heading { font-size: 30px; }
-  .hero__headline  { font-size: 38px; }
+  /* Tighten horizontal padding */
+  .container { padding: 0 18px; }
+  .nav { padding: 0 18px; }
 
-  .prod-grid { grid-template-columns: 1fr; }
+  /* Typography scale-down */
+  .section-heading { font-size: 28px; margin-bottom: 24px; }
+  .eyebrow { margin-bottom: 10px; }
+
+  /* Hero */
+  .hero .container { padding-top: 40px; }
+  .hero__headline  { font-size: 34px; }
+  .hero__sub { font-size: 14px; max-width: 100%; }
+  .hero__actions { flex-direction: column; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .hero__actions { margin-bottom: 40px; }
+
+  /* Hero stats: clean 2×2 grid */
+  .hero__stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-top: 0.5px solid rgba(255,255,255,0.08);
+  }
+  .hero__stat {
+    border-right: none;
+    padding: 16px 0;
+    min-width: unset;
+  }
+  .hero__stat:not(:first-child) { padding-left: 0; }
+  .hero__stat:nth-child(1),
+  .hero__stat:nth-child(3) {
+    border-right: 0.5px solid rgba(255,255,255,0.08);
+    padding-right: 14px;
+  }
+  .hero__stat:nth-child(2),
+  .hero__stat:nth-child(4) { padding-left: 14px; }
+  .hero__stat:nth-child(3),
+  .hero__stat:nth-child(4) { border-top: 0.5px solid rgba(255,255,255,0.08); }
+  .hero__stat-n { font-size: 22px; }
+
+  /* Products */
+  .prod-grid { grid-template-columns: 1fr; gap: 2px; }
   .prod-card--tall { grid-row: span 1; }
   .prod-card--tall .prod-card__inner { min-height: 200px; }
 
+  /* Process */
   .steps { grid-template-columns: 1fr; }
+
+  /* Industries */
   .ind-grid { grid-template-columns: 1fr 1fr; }
+  .ind-card { padding: 18px 14px; }
 
-  .hero__stat-n { font-size: 22px; }
-  .hero__actions { flex-direction: column; }
-  .hero__actions .btn { width: 100%; justify-content: center; }
+  /* Why */
+  .why__desc { max-width: 100%; }
 
+  /* Mission */
+  .mission__left .section-heading { font-size: 26px; }
+  .mission__left .btn { width: 100%; justify-content: center; }
+
+  /* Testimonials */
+  .testi-card { width: 260px; padding: 20px 18px; }
+
+  /* CTA band */
   .cta-band h2 { font-size: 26px; }
+
+  /* Contact */
+  .contact__grid { gap: 32px; }
+  .hours-card { padding: 20px 16px; }
+  .social-row { flex-wrap: wrap; }
+
+  /* Section padding reduction */
+  .products, .why, .industries, .mission,
+  .testimonials, .quote-section, .contact { padding: 52px 0; }
+  .process { padding: 52px 0; }
+  .splash { padding: 40px 0; }
+  .cta-band { padding: 40px 0; }
+
+  /* Footer */
   .footer__inner { flex-direction: column; align-items: flex-start; }
+  .footer__links { gap: 12px; flex-wrap: wrap; }
+
+  /* Larger hamburger touch target */
+  .nav__hamburger { padding: 8px; }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE — SMALL PHONES (≤400px)
+════════════════════════════════════════ */
+@media (max-width: 400px) {
+  .container { padding: 0 14px; }
+  .nav { padding: 0 14px; }
+
+  .section-heading { font-size: 24px; }
+  .hero__headline  { font-size: 28px; }
+  .hero__stat-n    { font-size: 20px; }
+
+  /* Stack stats vertically on tiny phones */
+  .hero__stats { grid-template-columns: 1fr; }
+  .hero__stat { border-right: none !important; padding-right: 0 !important; padding-left: 0 !important; }
+  .hero__stat:nth-child(2),
+  .hero__stat:nth-child(3),
+  .hero__stat:nth-child(4) { border-top: 0.5px solid rgba(255,255,255,0.08); }
+
+  .ind-grid { grid-template-columns: 1fr 1fr; }
+  .cta-band h2 { font-size: 22px; }
+  .testi-card { width: 240px; }
 }
 
 /* ════════════════════════════════════════
