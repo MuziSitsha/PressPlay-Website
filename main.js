@@ -130,9 +130,7 @@ if (quoteForm) {
   if (formNext) formNext.value = window.location.origin + '/?sent=1#quote';
 
   quoteForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    // Client-side validation
+    // Validate — only block submission if something is missing
     const required = quoteForm.querySelectorAll('[required]');
     let valid = true;
 
@@ -145,17 +143,16 @@ if (quoteForm) {
     });
 
     if (!valid) {
+      e.preventDefault(); // stop here only when invalid
       const firstError = quoteForm.querySelector('[style*="E8187A"]');
       if (firstError) firstError.focus();
       return;
     }
 
-    // All good — show sending state then submit natively
-    // Native POST handles file uploads reliably without CORS issues
+    // Valid — update button and let the browser POST natively to Formsubmit
     const submitBtn = quoteForm.querySelector('.btn--submit');
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'SENDING...';
-    quoteForm.submit();
   });
 
   // Show success banner if redirected back after submission
