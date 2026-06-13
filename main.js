@@ -184,10 +184,12 @@ if (quoteForm) {
     `;
   }
 
-  // Live border-color reset on input
+  // Live border-color reset on input — deferred to avoid blocking paint (INP)
   quoteForm.querySelectorAll('input, select, textarea').forEach(field => {
     field.addEventListener('input', () => {
-      field.style.borderColor = '';
+      if (field.style.borderColor) {
+        requestAnimationFrame(() => { field.style.borderColor = ''; });
+      }
     });
   });
 }
@@ -200,11 +202,13 @@ const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const id = entry.target.getAttribute('id');
-      navAnchors.forEach(a => {
-        a.style.color = '';
-        if (a.getAttribute('href') === `#${id}`) {
-          a.style.color = '#E8187A';
-        }
+      requestAnimationFrame(() => {
+        navAnchors.forEach(a => {
+          a.style.color = '';
+          if (a.getAttribute('href') === `#${id}`) {
+            a.style.color = '#E8187A';
+          }
+        });
       });
     }
   });
