@@ -125,10 +125,14 @@ if (uploadInput && uploadText) {
 const quoteForm = document.getElementById('quoteForm');
 
 if (quoteForm) {
-  quoteForm.addEventListener('submit', async (e) => {
+  // Set the redirect URL dynamically so it works on any domain
+  const formNext = document.getElementById('formNext');
+  if (formNext) formNext.value = window.location.origin + '/?sent=1#quote';
+
+  quoteForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    // Basic validation
+    // Client-side validation
     const required = quoteForm.querySelectorAll('[required]');
     let valid = true;
 
@@ -146,56 +150,42 @@ if (quoteForm) {
       return;
     }
 
+    // All good — show sending state then submit natively
+    // Native POST handles file uploads reliably without CORS issues
     const submitBtn = quoteForm.querySelector('.btn--submit');
-    const originalText = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'SENDING...';
-
-    let success = false;
-    try {
-      const res = await fetch('https://formsubmit.co/ajax/pressplaybrands@gmail.com', {
-        method: 'POST',
-        body: new FormData(quoteForm),
-        headers: { 'Accept': 'application/json' },
-      });
-      const data = await res.json();
-      success = !!data.success;
-    } catch (_) {
-      success = false;
-    }
-
-    if (success) {
-      quoteForm.innerHTML = `
-        <div style="
-          text-align: center;
-          padding: 48px 24px;
-          background: rgba(232,24,122,0.08);
-          border: 0.5px solid rgba(232,24,122,0.3);
-          border-radius: 8px;
-        ">
-          <div style="
-            width: 52px; height: 52px;
-            background: #E8187A;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 18px;
-          ">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20,6 9,17 4,12"/>
-            </svg>
-          </div>
-          <p style="font-size:18px;font-weight:700;color:#fff;letter-spacing:0.04em;margin-bottom:8px;">QUOTE REQUEST SENT!</p>
-          <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">
-            Thanks — we'll get back to you within 24 hours<br>with a custom quote for your order.
-          </p>
-        </div>
-      `;
-    } else {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = originalText;
-      alert('Something went wrong. Please try again or email us directly.');
-    }
+    quoteForm.submit();
   });
+
+  // Show success banner if redirected back after submission
+  if (window.location.search.includes('sent=1')) {
+    quoteForm.innerHTML = `
+      <div style="
+        text-align: center;
+        padding: 48px 24px;
+        background: rgba(232,24,122,0.08);
+        border: 0.5px solid rgba(232,24,122,0.3);
+        border-radius: 8px;
+      ">
+        <div style="
+          width: 52px; height: 52px;
+          background: #E8187A;
+          border-radius: 50%;
+          display: flex; align-items: center; justify-content: center;
+          margin: 0 auto 18px;
+        ">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20,6 9,17 4,12"/>
+          </svg>
+        </div>
+        <p style="font-size:18px;font-weight:700;color:#fff;letter-spacing:0.04em;margin-bottom:8px;">QUOTE REQUEST SENT!</p>
+        <p style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">
+          Thanks — we'll get back to you within 24 hours<br>with a custom quote for your order.
+        </p>
+      </div>
+    `;
+  }
 
   // Live border-color reset on input
   quoteForm.querySelectorAll('input, select, textarea').forEach(field => {

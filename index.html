@@ -541,11 +541,16 @@
     <div class="container">
       <p class="eyebrow">GET A QUOTE</p>
       <h2 class="section-heading">Let's build<br><em>your brand.</em></h2>
-      <form class="quote-form" id="quoteForm" novalidate>
+      <form class="quote-form" id="quoteForm"
+            action="https://formsubmit.co/pressplaybrands@gmail.com"
+            method="POST"
+            enctype="multipart/form-data"
+            novalidate>
         <!-- Formsubmit.co config -->
         <input type="hidden" name="_subject" value="New Quote Request — Press Play" />
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" id="formNext" value="" />
 
         <div class="form-row">
           <div class="form-group">
