@@ -542,41 +542,46 @@
       <p class="eyebrow">GET A QUOTE</p>
       <h2 class="section-heading">Let's build<br><em>your brand.</em></h2>
       <form class="quote-form" id="quoteForm" novalidate>
+        <!-- Formsubmit.co config -->
+        <input type="hidden" name="_subject" value="New Quote Request — Press Play" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+
         <div class="form-row">
           <div class="form-group">
             <label for="businessName">Business name</label>
-            <input type="text" id="businessName" name="businessName" placeholder="Your business name" required />
+            <input type="text" id="businessName" name="Business Name" placeholder="Your business name" required />
           </div>
           <div class="form-group">
             <label for="contactPerson">Contact person</label>
-            <input type="text" id="contactPerson" name="contactPerson" placeholder="Your full name" required />
+            <input type="text" id="contactPerson" name="Contact Person" placeholder="Your full name" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="phone">Phone number</label>
-            <input type="tel" id="phone" name="phone" placeholder="+27 XX XXX XXXX" required />
+            <input type="tel" id="phone" name="Phone Number" placeholder="+27 XX XXX XXXX" required />
           </div>
           <div class="form-group">
             <label for="email">Email address</label>
-            <input type="email" id="email" name="email" placeholder="you@yourbusiness.co.za" required />
+            <input type="email" id="email" name="Email Address" placeholder="you@yourbusiness.co.za" required />
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label for="packagingType">Packaging type</label>
-            <select id="packagingType" name="packagingType" required>
+            <select id="packagingType" name="Packaging Type" required>
               <option value="" disabled selected>Select packaging type</option>
-              <option value="cups">Branded Cups</option>
-              <option value="burger">Burger Boxes</option>
-              <option value="pizza">Pizza Boxes</option>
-              <option value="containers">Meal Containers</option>
-              <option value="multiple">Multiple Products</option>
+              <option value="Branded Cups">Branded Cups</option>
+              <option value="Burger Boxes">Burger Boxes</option>
+              <option value="Pizza Boxes">Pizza Boxes</option>
+              <option value="Meal Containers">Meal Containers</option>
+              <option value="Multiple Products">Multiple Products</option>
             </select>
           </div>
           <div class="form-group">
             <label for="quantity">Quantity required</label>
-            <input type="text" id="quantity" name="quantity" placeholder="e.g. 500 units" required />
+            <input type="text" id="quantity" name="Quantity" placeholder="e.g. 500 units" required />
           </div>
         </div>
         <div class="form-group form-group--full">
@@ -584,12 +589,12 @@
           <div class="upload-zone" id="uploadZone">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17,8 12,3 7,8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <span>DROP YOUR LOGO HERE · PNG · SVG · AI · PDF</span>
-            <input type="file" id="logoUpload" name="logoUpload" accept=".png,.svg,.ai,.pdf,.jpg,.jpeg" class="upload-zone__input" aria-label="Upload logo file" />
+            <input type="file" id="logoUpload" name="Logo" accept=".png,.svg,.ai,.pdf,.jpg,.jpeg" class="upload-zone__input" aria-label="Upload logo file" />
           </div>
         </div>
         <div class="form-group form-group--full">
           <label for="notes">Special requirements or questions</label>
-          <textarea id="notes" name="notes" placeholder="Tell us anything specific about your order, design preferences, or questions..." rows="4"></textarea>
+          <textarea id="notes" name="Special Requirements" placeholder="Tell us anything specific about your order, design preferences, or questions..." rows="4"></textarea>
         </div>
         <button type="submit" class="btn btn--pink btn--submit">
           <svg width="12" height="14" viewBox="0 0 12 14" fill="none" aria-hidden="true"><path d="M1 1L11 7L1 13V1Z" fill="white"/></svg>
@@ -630,7 +635,7 @@
             </div>
             <div>
               <span class="contact__label">EMAIL</span>
-              <span class="contact__value">info@pressplaybrand.co.za</span>
+              <span class="contact__value">pressplaybrands@gmail.com</span>
             </div>
           </div>
           <div class="contact__item">

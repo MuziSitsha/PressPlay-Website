@@ -151,20 +151,18 @@ if (quoteForm) {
     submitBtn.disabled = true;
     submitBtn.innerHTML = 'SENDING...';
 
-    // ── REPLACE THIS WITH YOUR ACTUAL FORM ENDPOINT ──
-    // Options: Formspree (https://formspree.io), Netlify Forms,
-    //          EmailJS, or your own backend.
-    //
-    // Formspree example:
-    //   const res = await fetch('https://formspree.io/f/YOUR_ID', {
-    //     method: 'POST',
-    //     headers: { 'Accept': 'application/json' },
-    //     body: new FormData(quoteForm),
-    //   });
-    //
-    // For now, simulate a successful submission:
-    await new Promise(resolve => setTimeout(resolve, 1200));
-    const success = true; // Replace with: res.ok
+    let success = false;
+    try {
+      const res = await fetch('https://formsubmit.co/ajax/pressplaybrands@gmail.com', {
+        method: 'POST',
+        body: new FormData(quoteForm),
+        headers: { 'Accept': 'application/json' },
+      });
+      const data = await res.json();
+      success = !!data.success;
+    } catch (_) {
+      success = false;
+    }
 
     if (success) {
       quoteForm.innerHTML = `
